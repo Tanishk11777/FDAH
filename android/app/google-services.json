@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "648840532583",
+    "project_id": "fdah-ab1c1",
+    "storage_bucket": "fdah-ab1c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648840532583:android:3b9839f6933d21adf6bac2",
+        "android_client_info": {
+          "package_name": "com.example.fdah"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB6Z_fzLoTlcUhwPEcoXkRlQcgwx8XWTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,5 @@
 import 'package:fdah/login/login_screen.dart';
+import 'package:fdah/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fdah/constants.dart';
 
@@ -21,7 +22,9 @@ class LoginSignupBtn extends StatelessWidget {
             backgroundColor: kPrimaryLightColour,
             elevation: 0,
           ),
-          onPressed: (){},
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context){return SignUpScreen();}));
+          },
           child: Text("Sign Up".toUpperCase(),style: TextStyle(color: Colors.black),),
         )),
       ],

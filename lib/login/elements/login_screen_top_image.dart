@@ -9,7 +9,7 @@ class LoginScreenTopImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("LOGIN", style: Theme.of(context).textTheme.headline4!.copyWith(color: Colors.black38), textAlign: TextAlign.center,),
+        Text("LOGIN", style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black38), textAlign: TextAlign.center,),
         const SizedBox(height: defaultPadding),
         Row(
           children: [

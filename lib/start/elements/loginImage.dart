@@ -10,7 +10,7 @@ class StartImage extends StatelessWidget {
     return Column(
       children: [
         Text("Welcome to FDAH",
-          style: Theme.of(context).textTheme.headline4!.copyWith(
+          style: Theme.of(context).textTheme.headlineMedium!.copyWith(
             color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
