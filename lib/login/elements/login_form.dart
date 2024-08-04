@@ -23,6 +23,24 @@ class _LoginFormState extends State<LoginForm> {
 
   bool _isLoading = false;
 
+ void _showErrorDialog(String message) {
+   showDialog(
+     context: context,
+     builder: (ctx) => AlertDialog(
+       title: const Text('Alert'),
+       content: Text(message),
+       actions: [
+         TextButton(
+           onPressed: () {
+             Navigator.of(ctx).pop();
+           },
+           child: const Text('OK'),
+         ),
+       ],
+     ),
+   );
+ }
+
   void _signInWithEmailAndPassword() async {
     setState(() {
       _isLoading = true;
@@ -40,13 +58,15 @@ class _LoginFormState extends State<LoginForm> {
         ),
       );
     } on FirebaseAuthException catch (e) {
+      String errorMessage;
       if (e.code == 'user-not-found') {
-        throw Exception('User not found');
+        errorMessage = 'User not found';
       } else if (e.code == 'wrong-password') {
-        throw Exception('Wrong password');
-      }else{
-        throw Exception(e.toString());
+        errorMessage = 'Wrong password';
+      } else {
+        errorMessage = e.toString();
       }
+      _showErrorDialog(errorMessage);
     } finally {
       setState(() {
         _isLoading = false;

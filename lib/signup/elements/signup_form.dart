@@ -1,63 +1,83 @@
+import 'package:fdah/HomePage/homePage.dart';
 import 'package:flutter/material.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fdah/components/registredcheck.dart';
 import '../../../constants.dart';
-//import '../../HomePage/HomePage.dart';
 import '../../Login/login_screen.dart';
 
-class SignUpForm extends StatelessWidget {
+class SignUpForm extends StatefulWidget {
   const SignUpForm({
     Key? key,
   }) : super(key: key);
 
-//   @override
-//   State<SignUpForm> createState() => _SignUpFormState();
-// }
-//
-// class _SignUpFormState extends State<SignUpForm> {
-//   final _formKey = GlobalKey<FormState>();
-//   final _emailController = TextEditingController();
-//   final _passwordController = TextEditingController();
-//   bool _isLoading = false;
-//
-//   void _signUpWithEmailAndPassword() async {
-//     setState(() {
-//       _isLoading = true;
-//     });
-//     try {
-//       UserCredential userCredential =
-//       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-//         email: _emailController.text,
-//         password: _passwordController.text,
-//       );
-//
-//       Navigator.push(
-//         context,
-//         MaterialPageRoute(
-//           builder: (context) => const HomeScreen(),
-//         ),
-//       );
-//     } on FirebaseAuthException catch (e) {
-//       if (e.code == 'weak-password') {
-//         print('The password provided is too weak.');
-//       } else if (e.code == 'email-already-in-use') {
-//         print('The account already exists for that email.');
-//       }
-//     } catch (e) {
-//       print(e);
-//     } finally {
-//       setState(() {
-//         _isLoading = false;
-//       });
-//     }
-//   }
-//
-//   @override
-//   void dispose() {
-//     _emailController.dispose();
-//     _passwordController.dispose();
-//     super.dispose();
-//   }
+  @override
+  State<SignUpForm> createState() => _SignUpFormState();
+  }
+
+ class _SignUpFormState extends State<SignUpForm> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: const Text('Okay'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _signUpWithEmailAndPassword() async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      UserCredential userCredential =
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      if (e.code == 'weak-password') {
+        errorMessage='weak password';
+      } else if (e.code == 'email-already-in-use') {
+        errorMessage='The account already exists for that email.';
+      }else{
+        errorMessage=e.toString();
+      }
+      _showErrorDialog(errorMessage);
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
