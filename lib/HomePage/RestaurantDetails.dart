@@ -107,7 +107,6 @@ class MenuItems extends StatefulWidget {
   MenuItems({Key? key, required this.index});
 
   final int index;
-
   @override
   State<MenuItems> createState() => _MenuItemsState();
 }
@@ -207,7 +206,6 @@ class _MenuItemsState extends State<MenuItems> {
                           _onClick[i] = !_onClick[i];
                         });
                         //if (_onClick[i]) {
-                        // Add the item to the cart when the checkbox is checked
                         // widget.addToCart(restaurantList1[i]);
                         //}
                       },

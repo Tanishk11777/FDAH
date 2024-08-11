@@ -82,25 +82,25 @@ class SignUpForm extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      //key: _formKey,
+      key: _formKey,
       child: Column(
         children: [
           TextFormField(
-            //controller: _emailController,
+            controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColour,
             onSaved: (email) {},
-            // validator: (value) {
-            //   if (value!.isEmpty) {
-            //     return 'Please enter Email Address';
-            //   }
-            //   return null;
-            // },
-            decoration: InputDecoration(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter Email Address';
+              }
+              return null;
+            },
+            decoration: const InputDecoration(
               hintText: "Your email",
               prefixIcon: Padding(
-                padding: const EdgeInsets.all(defaultPadding),
+                padding: EdgeInsets.all(defaultPadding),
                 child: Icon(Icons.person),
               ),
             ),
@@ -108,35 +108,35 @@ class SignUpForm extends StatefulWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: TextFormField(
-              //controller: _passwordController,
+              controller: _passwordController,
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColour,
-              // validator: (value) {
-              //   if (value!.isEmpty) {
-              //     return 'Please enter Password';
-              //   }
-              //   return null;
-              // },
-              decoration: InputDecoration(
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter Password';
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
                 hintText: "Your password",
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.all(defaultPadding),
+                  padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.lock),
                 ),
               ),
             ),
           ),
           const SizedBox(height: defaultPadding / 2),
-          // _isLoading
-          //     ? const CircularProgressIndicator()
-          //     : Hero(
-          //   tag: "signup_btn",child:
-         ElevatedButton(
+          _isLoading
+              ? const CircularProgressIndicator()
+              : Hero(
+            tag: "signup_btn",
+            child: ElevatedButton(
               onPressed: () {
-                // if (_formKey.currentState!.validate()) {
-                //   _signUpWithEmailAndPassword();
-                // }
+                if (_formKey.currentState!.validate()) {
+                  _signUpWithEmailAndPassword();
+                }
               },
               child: Text("Sign Up".toUpperCase(),
                   style: const TextStyle(
@@ -144,6 +144,7 @@ class SignUpForm extends StatefulWidget {
                   )
               ),
             ),
+          ),
           const SizedBox(height: defaultPadding),
           RegisteredCheck(
             login: false,
@@ -152,7 +153,7 @@ class SignUpForm extends StatefulWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return LoginScreen();
+                    return const LoginScreen();
                   },
                 ),
               );
